@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Assistant Training Homebase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 500;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #495057;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        /* Position Types */
+        .position-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .position-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .position-card h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        /* Resource Grid */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .resource-icon {
+            width: 50px;
+            height: 50px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .resource-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #495057;
+        }
+
+        .resource-desc {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* Progress Checklist */
+        .checklist {
+            background: #f8f9ff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #667eea;
+            border-radius: 4px;
+            margin-right: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .checkbox.checked {
+            background: #667eea;
+            border-color: #667eea;
+        }
+
+        .checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        /* Feedback Form */
+        .feedback-form {
+            background: #f8f9ff;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Medical Assistant Training Hub</h1>
+            <p class="subtitle">Your comprehensive guide to success in healthcare administration</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#overview" class="nav-link">Overview</a>
+                <a href="#training" class="nav-link">Training Resources</a>
+                <a href="#progress" class="nav-link">Progress Tracking</a>
+                <a href="#feedback" class="nav-link">Feedback</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="overview" class="section">
+            <h2>Position Overview</h2>
+            <p>Welcome to your Medical Assistant training homebase! Here you'll find everything you need to excel in your role, whether you're working virtually or on-site.</p>
+            
+            <div class="position-types">
+                <div class="position-card">
+                    <h4>🏥 On-Site Medical Assistant</h4>
+                    <p>Direct patient interaction, hands-on clinical support, in-person administrative tasks, and face-to-face patient care coordination.</p>
+                </div>
+                <div class="position-card">
+                    <h4>💻 Virtual Medical Assistant</h4>
+                    <p>Remote patient support via telehealth platforms, digital documentation, virtual check-ins, and telecommunication-based patient care.</p>
+                </div>
+            </div>
+
+            <h3>Core Responsibilities</h3>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                <li>Patient check-in and registration</li>
+                <li>Chart preparation and documentation</li>
+                <li>Administrative task management</li>
+                <li>Insurance verification and scheduling</li>
+                <li>Provider support and coordination</li>
+                <li>Patient communication and follow-up</li>
+            </ul>
+        </section>
+
+        <section id="training" class="section">
+            <h2>Training Resources</h2>
+            
+            <div class="resource-grid">
+                <div class="resource-card" onclick="openResource('training-videos')">
+                    <div class="resource-icon">🎥</div>
+                    <div class="resource-title">Training Videos</div>
+                    <div class="resource-desc">Essential video tutorials covering all aspects of your role</div>
+                </div>
+
+                <div class="resource-card" onclick="openResource('google-slides')">
+                    <div class="resource-icon">📊</div>
+                    <div class="resource-title">Presentation Materials</div>
+                    <div class="resource-desc">Google Slides presentations on key processes and procedures</div>
+                </div>
+
+                <div class="resource-card" onclick="openResource('youtube-playlist')">
+                    <div class="resource-icon">▶️</div>
+                    <div class="resource-title">YouTube Learning</div>
+                    <div class="resource-desc">Curated YouTube videos for additional learning</div>
+                </div>
+
+                <div class="resource-card" onclick="openResource('workflow-knowledge')">
+                    <div class="resource-icon">📋</div>
+                    <div class="resource-title">Workflow Knowledge</div>
+                    <div class="resource-desc">Step-by-step guides for daily workflows and processes</div>
+                </div>
+
+                <div class="resource-card" onclick="openResource('wish-i-knew')">
+                    <div class="resource-icon">💡</div>
+                    <div class="resource-title">What I Wish I Knew</div>
+                    <div class="resource-desc">Insider tips and lessons learned from experienced team members</div>
+                </div>
+
+                <div class="resource-card" onclick="openResource('quick-reference')">
+                    <div class="resource-icon">📚</div>
+                    <div class="resource-title">Quick Reference</div>
+                    <div class="resource-desc">Downloadable guides and cheat sheets for easy access</div>
+                </div>
+
+                <div class="resource-card" onclick="window.open('https://edhub.ama-assn.org/steps-forward/module/2837432?resultClick=1&bypassSolrId=J_2837432', '_blank')">
+                    <div class="resource-icon">🏥</div>
+                    <div class="resource-title">AMA Steps Forward™</div>
+                    <div class="resource-desc">Professional development module from the American Medical Association</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="progress" class="section">
+            <h2>Training Progress Checklist</h2>
+            <p>Track your learning progress with this comprehensive checklist. Both you and your supervisor should sign off on completed items.</p>
+            
+            <div class="checklist">
+                <h3>Week 1-2: Orientation & Basics</h3>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Complete HIPAA training and privacy protocols</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Learn EMR system navigation and basic entry</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Practice patient check-in procedures</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Understand appointment scheduling system</span>
+                </div>
+
+                <h3>Week 3-4: Clinical Tasks</h3>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Master chart preparation workflow</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Learn insurance verification process</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Practice telehealth platform operation (Virtual MAs)</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Complete medication reconciliation training</span>
+                </div>
+
+                <h3>Week 5-6: Advanced Skills</h3>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Handle complex patient communications</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Manage referral coordination</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Process lab results and follow-ups</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="checkbox" onclick="toggleCheck(this)"></div>
+                    <span>Complete quality assurance protocols</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="feedback" class="section">
+            <h2>6-Week Feedback Form</h2>
+            <p>Please complete this form after your first 6 weeks to help us improve our training program.</p>
+            
+            <div class="feedback-form">
+                <div class="form-group">
+                    <label for="employee-name">Your Name</label>
+                    <input type="text" id="employee-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="position-type">Position Type</label>
+                    <select id="position-type" required>
+                        <option value="">Select your position</option>
+                        <option value="onsite">On-Site Medical Assistant</option>
+                        <option value="virtual">Virtual Medical Assistant</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="training-rating">Overall Training Experience (1-5)</label>
+                    <select id="training-rating" required>
+                        <option value="">Rate your experience</option>
+                        <option value="5">5 - Excellent</option>
+                        <option value="4">4 - Very Good</option>
+                        <option value="3">3 - Good</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="1">1 - Poor</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="most-helpful">What was
